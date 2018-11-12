@@ -2,7 +2,7 @@
 
 set -x
 
-FIN_VERSION=1.79.2
+FIN_VERSION=1.79.3
 
 if [[ "$TERM" != "dumb" ]]; then
 	# Console colors
@@ -3214,8 +3214,7 @@ ssh_key ()
 	done
 
 	# Remove copied keys from the ssh-agent container after loading into the ssh-agent.
-	# Commented out in favor of passing individual keys on stdin of the agent container.
-	docker exec docksal-ssh-agent bash -c 'rm -rf /.ssh/*'
+	docker exec docksal-ssh-agent bash -c '[[ -d /.ssh ]] && rm -rf /.ssh'
 }
 
 #----- Installations and updates -----
